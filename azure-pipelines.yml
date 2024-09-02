@@ -37,7 +37,14 @@ steps:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az containerapp create \
+        az containerapp registry set \ 
+          --name $(containerAppName) \
+          --resource-group $(resourceGroupName) \
+          --server index.docker.io \
+          --username $(containerRegistry) \
+          --password $(containerRegistryPassword)
+        
+          az containerapp create \
           --name $(containerAppName) \
           --resource-group $(resourceGroupName) \
           --image $(containerRegistry)/$(imageName):$(Build.BuildId) \
