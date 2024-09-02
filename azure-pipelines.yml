@@ -1,14 +1,15 @@
 trigger:
-- main
+- none
 
 pool:
   vmImage: ubuntu-latest
 
 variables: 
   dockerHubServiceConnection: 'DockerServiceConnection'
+  azureServiceConnection: 'AzureServiceConnection'
   imageName: 'okrx/testing'
-#  containerAppName: 
-#  resourceGroupName: 
+  containerAppName: 'app01'
+  resourceGroupName: 'rg-pokroy-tf-demo-01'
 #  containerRegistry: 
 #  containerRegistryPassword:  
 
@@ -27,3 +28,14 @@ steps:
       repository: 'okrx/testing'
       tags: | 
         $(Build.BuildId)
+  
+        
+  - task: AzureContainerApps@1
+    displayName: 'Deploy to Azure Container Apps'
+    inputs:
+      azureSubscription: $(azureServiceConnection) # Azure Service Connection Name
+      appName: $(containerAppName) # Azure Container App name
+      resourceGroupName: $(resourceGroupName) # Azure Resource Group
+      image: $(imageName):$(Build.BuildId) # Docker image with tag
+      registryServer:  $(dockerHubServiceConnection)
+      containerAppEnvironment: 'containerappenv'
