@@ -28,3 +28,4 @@ steps:
       repository: $(imageName)
       tags: |
         $(Build.BuildId)
+      containerRegistry: $(dockerHubServiceConnection)  
