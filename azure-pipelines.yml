@@ -30,6 +30,6 @@ steps:
     displayName: 'Push Docker image to DuckerHub'
     inputs:
       command: push
-      Dockerfile: '**/Dockerfile'
+      repository: $(imageName)
       tags: |
         $(imageName):$(Build.BuildId)
