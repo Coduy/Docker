@@ -1,5 +1,5 @@
 trigger:
-- main
+- none
 
 pool:
   vmImage: ubuntu-latest
@@ -50,3 +50,4 @@ steps:
           --registry-password $(containerRegistryPassword) \
           --environment containerappenv 
 
+          YOUR IMAGE IS PUBLIC, SO NO NEED TO AUTH
