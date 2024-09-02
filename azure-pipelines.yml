@@ -48,4 +48,5 @@ steps:
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
           --registry-password $(containerRegistryPassword)
+          --enviroment containerappenv 
 
