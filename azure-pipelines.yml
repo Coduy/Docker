@@ -26,4 +26,4 @@ steps:
       Dockerfile: '**/Dockerfile'
       repository: 'okrx/testing'
       tags: | 
-        $(imageName):$(Build.BuildId)
+        new:latest
