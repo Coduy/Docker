@@ -12,8 +12,8 @@ pool:
 variables: 
   dockerHubServiceConnection: 'DockerServiceConnection'
   imageName: 'okrx/testing'
-  containerAppName: 
-  resourceGroupName: 
+#  containerAppName: 
+#  resourceGroupName: 
 #  containerRegistry: 
 #  containerRegistryPassword:  
 
