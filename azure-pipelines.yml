@@ -44,6 +44,7 @@ steps:
           --cpu 0.25 \
           --memory 0.5 \
           --ingress 'external' \
+          -- target-port 80
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
           --registry-password $(containerRegistryPassword)
