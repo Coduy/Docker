@@ -32,4 +32,4 @@ steps:
       repository: $(imageName)
       tags: |
         $(Build.BuildId)
-      containerRegistry: $(DockerServiceConnection)  
+      containerRegistry: $(dockerHubServiceConnection)  
