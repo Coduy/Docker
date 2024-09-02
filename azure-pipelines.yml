@@ -37,23 +37,15 @@ steps:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az containerapp registry set \ 
-          --name $(containerAppName) \
-          --resource-group $(resourceGroupName) \
-          --server index.docker.io \
-          --username $(containerRegistry) \
-          --password $(containerRegistryPassword)
-        
-          az containerapp create \
+        az containerapp create \
           --name $(containerAppName) \
           --resource-group $(resourceGroupName) \
           --image $(containerRegistry)/$(imageName):$(Build.BuildId) \
-          --cpu 0.25 \
-          --memory 0.5 \
+          --cpu 0.5 \
+          --memory 1.0 \
+          --target-port 80 \
           --ingress 'external' \
-          -- target-port 80
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
           --registry-password $(containerRegistryPassword)
-
 
