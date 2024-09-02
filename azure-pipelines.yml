@@ -10,8 +10,8 @@ variables:
   imageName: 'okrx/testing'
   containerAppName: 'app01'
   resourceGroupName: 'rg-pokroy-tf-demo-01'
-#  containerRegistry: 
-#  containerRegistryPassword:  
+  containerRegistry: 'okrx'
+# containerRegistryPassword:  
 
 steps:
   - task: Docker@2
@@ -30,12 +30,18 @@ steps:
         $(Build.BuildId)
   
         
-  - task: AzureContainerApps@1
+  - task: AzureCLI@2
     displayName: 'Deploy to Azure Container Apps'
     inputs:
-      azureSubscription: $(azureServiceConnection) # Azure Service Connection Name
-      appName: $(containerAppName) # Azure Container App name
-      resourceGroupName: $(resourceGroupName) # Azure Resource Group
-      image: $(imageName):$(Build.BuildId) # Docker image with tag
-      registryServer:  $(dockerHubServiceConnection)
-      containerAppEnvironment: 'containerappenv'
+      azureSubscription: 'AzureServiceConnection'  # Azure service connection name
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az containerapp update \
+          --name $(containerAppName) \
+          --resource-group $(resourceGroupName) \
+          --image $(imageName):$(Build.BuildId) \
+          --registry-server index.docker.io \
+          --registry-username $(containerRegistry) \
+          --registry-password $(CONTAINERREGISTRYPASSWORD)      
+
