@@ -19,7 +19,7 @@ steps:
       command: build
       Dockerfile: '**/Dockerfile'
       tags: | 
-        $(imageName):latest
+        vamostag:latest
 
   - script: | 
       docker images 
