@@ -47,6 +47,6 @@ steps:
           --ingress 'external' \
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
-          --registry-password $(containerRegistryPassword)
+          --registry-password $(containerRegistryPassword) \
           --environment containerappenv 
 
