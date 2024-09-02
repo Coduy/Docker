@@ -10,12 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 variables: 
-  dockerHubServiceConnection:
-  imageName:
-  containerAppName:
-  resourceGroupNaem:
-  containerRegistry:
-  containerRegistryPassword:  
+  dockerHubServiceConnection: 'DockerServiceConnection'
+  imageName: 'okrx/testing'
+  containerAppName: 
+  resourceGroupName: 
+#  containerRegistry: 
+#  containerRegistryPassword:  
 
 steps:
   - task: Docker@2
@@ -32,29 +32,4 @@ steps:
       command: push
       Dockerfile: '**/Dockerfile'
       tags: |
-      $(imageName):$(Build.BuildId)
-  
-  - task: AzureCLI@2
-    displayName: 'Deploy to Azure Container Apps'
-    inputs: 
-      azureSubscription: 'AzureServiecConnection'
-      scriptType: 'bash'
-      scriptLocation: 'inllineScrip'
-      inlineScript: |
-        az containerapp update \
-          --name $(containerAppName) \
-          --resource-group $(resourceGroupName) \
-          --image $(imageName):$(Build.BuildId) \
-          --registry-server $(containerRegistry).docker.io \
-          --registry-username $(containerRegistry) \
-          --registry-password $(containerRegistryPassword)
-
-
-
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+        $(imageName):$(Build.BuildId)
