@@ -37,11 +37,15 @@ steps:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az containerapp update \
+        az containerapp create \
           --name $(containerAppName) \
           --resource-group $(resourceGroupName) \
           --image $(containerRegistry)/$(imageName):$(Build.BuildId) \
+          --cpu 0.25 \
+          --memory 0.5 \
+          --ingress 'external' \
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
-          --registry-password $(containerRegistryPassword) 
+          --registry-password $(containerRegistryPassword)
+
 
