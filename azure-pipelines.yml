@@ -40,8 +40,8 @@ steps:
         az containerapp update \
           --name $(containerAppName) \
           --resource-group $(resourceGroupName) \
-          --image $(imageName):$(Build.BuildId) \
+          --image $(containerRegistry)/$(imageName):$(Build.BuildId) \
           --registry-server index.docker.io \
           --registry-username $(containerRegistry) \
-          --registry-password $(CONTAINERREGISTRYPASSWORD)      
+          --registry-password $(containerRegistryPassword) 
 
