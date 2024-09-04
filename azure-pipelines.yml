@@ -45,9 +45,7 @@ steps:
           --memory 1.0 \
           --target-port 80 \
           --ingress 'external' \
-          --registry-server index.docker.io \
+          --registry-server docker.io \
           --registry-username $(containerRegistry) \
           --registry-password $(containerRegistryPassword) \
           --environment containerappenv 
-
-          YOUR IMAGE IS PUBLIC, SO NO NEED TO AUTH
