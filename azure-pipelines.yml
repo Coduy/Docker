@@ -40,7 +40,7 @@ steps:
         az containerapp create \
           --name $(containerAppName) \
           --resource-group $(resourceGroupName) \
-          --image okrx/testing:494 \
+          --image okrx/testing:$(Build.BuildId) \
           --cpu 0.5 \
           --memory 1.0 \
           --target-port 80 \
